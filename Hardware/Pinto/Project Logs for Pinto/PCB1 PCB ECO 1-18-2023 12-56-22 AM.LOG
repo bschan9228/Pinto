@@ -1,0 +1,22 @@
+Change Component Footprint: Designator=J? Old Footprint=MOLX-480-37-1000_V New Footprint=HRO_TYPE-C-31-M-12
+Change Component Comment : Designator=J? Old Comment=480-37-1000 New Comment=TYPE-C-31-M-12
+Change Managed Component Library Link : Designator=J? Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=377449FE-312A-4934-9342-5C3A3F1E45B8 Old ItemGUID=8A9DCD80-81CF-4FEE-9D5D-0BD84E48DD18 New ItemGUID=4AA2CDDB-8E7D-4E9D-98EB-0023CB5D1DFB Old RevisionGUID=3242231C-B89A-459C-AFBA-3BC6D29196DB New RevisionGUID=15A07634-B625-451B-A448-0B084B53F7FF
+Change component parameters: Designator = "J?" ("J?"); Footprint = "MOLX-480-37-1000_V"; UniqueID = "\QTPNVJEK" ("\QTPNVJEK")
+Change component parameters (AddParameter): Name = "Availability"; Value = "Not in stock"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/TYPE-C-31-M-12/HRO+Electronics+Co.%252C+Ltd./view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Component Type"; Value = "Standard"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Design Item ID"; Value = "TYPE-C-31-M-12"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "HRO Electronics Co., Ltd."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "TYPE-C-31-M-12"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "Package"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pin Count"; Value = "16"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/TYPE-C-31-M-12/HRO+Electronics+Co.%252C+Ltd./view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Source"; Value = "TYPE-C-31-M-12.SchLib"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetU*_25 Pin=U*-25
+Added Net: Name=NetU*_25
+Added Pin To Net: NetName=NetU*_26 Pin=U*-26
+Added Net: Name=NetU*_26
+Added Member To Class: ClassName=Components Member=Component J? TYPE-C-31-M-12
+Added Room: Name=Components

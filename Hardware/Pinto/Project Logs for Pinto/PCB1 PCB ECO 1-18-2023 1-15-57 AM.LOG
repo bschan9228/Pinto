@@ -1,0 +1,15 @@
+Change Managed Component Library Link : Designator=J? Old VaultGUID=377449FE-312A-4934-9342-5C3A3F1E45B8 New VaultGUID=377449FE-312A-4934-9342-5C3A3F1E45B8 Old ItemGUID=4AA2CDDB-8E7D-4E9D-98EB-0023CB5D1DFB New ItemGUID=D5ED4AFD-EC3D-410F-8FE3-25E91412F44C Old RevisionGUID=15A07634-B625-451B-A448-0B084B53F7FF New RevisionGUID=690B5CBC-A961-4228-819F-4A6CE3343CC5
+Added Pin To Net: NetName=GND Pin=J?-A1/B12
+Added Pin To Net: NetName=GND Pin=J?-B1/A12
+Added Pin To Net: NetName=GND Pin=J?-S1
+Added Pin To Net: NetName=GND Pin=J?-S2
+Added Pin To Net: NetName=GND Pin=J?-S3
+Added Pin To Net: NetName=GND Pin=J?-S4
+Added Pin To Net: NetName=NetJ?_A6 Pin=J?-A6
+Added Pin To Net: NetName=NetJ?_A6 Pin=J?-B6
+Added Pin To Net: NetName=NetJ?_A6 Pin=U*-26
+Added Net: Name=NetJ?_A6
+Added Pin To Net: NetName=NetJ?_A7 Pin=J?-A7
+Added Pin To Net: NetName=NetJ?_A7 Pin=J?-B7
+Added Pin To Net: NetName=NetJ?_A7 Pin=U*-25
+Added Net: Name=NetJ?_A7
