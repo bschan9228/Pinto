@@ -1,0 +1,10 @@
+Change Component Designator: OldDesignator=ST? NewDesignator=ST1
+Change Component Designator: OldDesignator=ST? NewDesignator=ST2
+Change Component Designator: OldDesignator=ST? NewDesignator=ST3
+Change Component Designator: OldDesignator=ST? NewDesignator=ST4
+Change Component Designator: OldDesignator=U? NewDesignator=U2
+Change Net Name : Old Net Name=NetU?_4 New Net Name=NetU2_4
+Added Member To Class: ClassName=Components Member=Component ST1 PTH-M2D5X5
+Added Member To Class: ClassName=Components Member=Component ST3 PTH-M2D5X5
+Added Member To Class: ClassName=Components Member=Component ST4 PTH-M2D5X5
+Added Room: Name=Components
