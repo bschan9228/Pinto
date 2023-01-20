@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=NetQ1_1 Pin=U*1-15
+Added Pin To Net: NetName=NetQ1_1 Pin=U*1-27
+Added Pin To Net: NetName=NetU*1_15 Pin=U*1-15
+Added Net: Name=NetU*1_15
+Added Room: Name=Components

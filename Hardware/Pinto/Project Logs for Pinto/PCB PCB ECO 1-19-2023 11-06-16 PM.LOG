@@ -1,0 +1,12 @@
+Added Pin To Net: NetName=NetJ1_1 Pin=P3-1
+Added Pin To Net: NetName=NetJ1_2 Pin=P3-2
+Added Pin To Net: NetName=NetJ1_3 Pin=P3-3
+Added Pin To Net: NetName=NetJ1_4 Pin=P3-4
+Added Pin To Net: NetName=NetJ1_9 Pin=P3-5
+Added Pin To Net: NetName=NetJ1_10 Pin=P3-6
+Added Pin To Net: NetName=NetJ1_11 Pin=P3-7
+Added Pin To Net: NetName=NetJ1_13 Pin=P3-8
+Added Pin To Net: NetName=NetJ1_15 Pin=P3-9
+Added Pin To Net: NetName=NetQ1_1 Pin=P3-10
+Change Net Name : Old Net Name=NetQ1_1 New Net Name=NetP3_10
+Added Room: Name=Components
