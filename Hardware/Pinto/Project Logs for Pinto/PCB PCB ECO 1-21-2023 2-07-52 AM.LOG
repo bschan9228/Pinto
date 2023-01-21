@@ -1,0 +1,2 @@
+Change Component Designator: OldDesignator=C17 NewDesignator=C18
+Added Member To Class: ClassName=Components Member=Component C16 Capacitor 2,2µF +/-20% 10V 0402

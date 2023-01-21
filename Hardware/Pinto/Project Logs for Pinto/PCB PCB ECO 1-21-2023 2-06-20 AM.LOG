@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=GND Pin=C16-2
+Added Member To Class: ClassName=Components Member=Component C16 Capacitor 1µF +/-20% 10V 0402
+Added Member To Class: ClassName=Components Member=Component C16 Capacitor 2,2µF +/-20% 10V 0402
+Added Room: Name=Components
