@@ -1,0 +1,691 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD22\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">1/21/2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">1:04:57 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc" class="file"><acronym title="C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc">C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">4</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">105</td></tr>
+</table>
+</td>
+</table><a name="IDRBDOFRB11XY2OBDWW2W135KXREFBK5KBOVRKA3FDJQVZTXOR3EAM"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5OCHCB34KBZNHZ5TP5SWLKKUZIRYXZRTMXGMH4K4XSJZJUAPP4CO">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</a></td>
+<td class="column2">4</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">4</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIJGNNM5O5WGHK4DPYRBF2HSGKOE4UDQBGTQAD3MACRFBLUYMX0N">Clearance Constraint (Gap=0.102mm) (All),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRH4ODIHXQZFGM1GCPBG425511NUTNQF2EZH5OQCLSXW5SW1AJQND">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDP5UV1CPNZ5KTIIP5MIC0EYNBWEXOY50K2V2NXYJLJUWFUL42IOZM">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDEPD02FGJDGTLDSUDJGA0ULAIJ2YHAVZB2RTCTETMLQGG4HFHTAB">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOTGEGGAX4OFZJB44RT22U2YJMD2N5EHOVYCG2SNSI4OOLWSMIX1F">Width Constraint (Min=0.102mm) (Max=1816.048mm) (Preferred=0.102mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDX2K5I3XGGEVCHIUQCSAOUJZPSBOFMN0EMKJAEXMEYZ2TDV1ZZOQ">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (InPadClass('PowerPads'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0V01Q2ENPF5BC2OYFE0SECCRQN4DCMWWAOHUEDO1LILVKGDT5YWI">Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.102mm) (Air Gap=0.102mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2WTMH5WZPPQIQHBXMBCURPAMFF5UEN1AKLDXWDV1BXQMAN5AWVK">Minimum Annular Ring (Minimum=0.076mm) (All)</a></td>
+<td class="column2">16</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXALAO0HAPAULPFXTE2ADRITRFJFGZ2RYXIQ53XK2KPJE0KXTCK0C">Hole Size Constraint (Min=0.2mm) (Max=6.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDD2BUP4BWVG1TO2DNW3FEOFJNYHX0B4V5VFX4JUOSVECTXXHYKHCN">Hole To Hole Clearance (Gap=0.25mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMEWA5X3S5BXZPXCL2G42MBRRPO3AYHV2J5C4XNF3GTQGGSVVALJO">Minimum Solder Mask Sliver (Gap=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQVUJYGFKIVZLPPOJKQTUFC3W3NDCAWG5MMJHKHNIKVHR2ZT1RF3">Silk To Solder Mask (Clearance=0.102mm) (IsPad),(All)</a></td>
+<td class="column2">78</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0XUU2UGIEMXDBD2TQB0I525NSG2BDDY3HTJXRRBWAGHJOCNBN3Z">Silk to Silk (Clearance=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLXNSUH5EKHRUJITMC0LQIFRPUIM4HFEUSE4M3YD2DPXEJMUS0CW">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWNSOABJLTCGJIQTBLWZDPPK31GH5WYWIAAFNNQOAOH3EETTOMNWO">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2JB14SXQVP0GFSRIT1U44WQKQEJZSPR0SZOKOMKXO4NPEACTFURJ">Height Constraint (Min=0mm) (Max=1816.048mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">105</td>
+</tr>
+</table><br><a name="IDQR0OJM5BJBARAR5Y0ZMIK31ZI3CXL2HG4H4MZEQLR522WYBFLJD"><h2>Warnings</h2></a><a name="ID5OCHCB34KBZNHZ5TP5SWLKKUZIRYXZRTMXGMH4K4XSJZJUAPP4CO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Polygon named: NONET_L03_P005 In net GND On Int2 (PWR)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Polygon named: NONET_L02_P006 In net GND On Int1 (GND)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Polygon named: NONET_L03_P005 In net GND On Int2 (PWR)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Polygon named: NONET_L02_P006 In net GND On Int1 (GND)</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDIJGNNM5O5WGHK4DPYRBF2HSGKOE4UDQBGTQAD3MACRFBLUYMX0N"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.102mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5318.825mil|Location2.X=5329.917mil|Location1.Y=2678.903mil|Location2.Y=2689.995mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5318.825mil|Location2.X=5329.917mil|Location1.Y=2678.903mil|Location2.Y=2689.995mil|Absolute=True">Clearance Constraint: (0.2mm &lt; 0.25mm) Between Hole of Pad J2-(135.639mm,68.193mm) on Multi-Layer And Pad J2-B1/A12(134.569mm,67.883mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5319.209mil|Location2.X=5330.301mil|Location1.Y=2685.055mil|Location2.Y=2700.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5319.209mil|Location2.X=5330.301mil|Location1.Y=2685.055mil|Location2.Y=2700.559mil|Absolute=True">Clearance Constraint: (0.235mm &lt; 0.25mm) Between Hole of Pad J2-(135.639mm,68.193mm) on Multi-Layer And Pad J2-B4/A9(134.569mm,68.683mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5318.825mil|Location2.X=5329.917mil|Location1.Y=2907.092mil|Location2.Y=2918.184mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5318.825mil|Location2.X=5329.917mil|Location1.Y=2907.092mil|Location2.Y=2918.184mil|Absolute=True">Clearance Constraint: (0.2mm &lt; 0.25mm) Between Hole of Pad J2-(135.639mm,73.973mm) on Multi-Layer And Pad J2-A1/B12(134.569mm,74.283mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5319.209mil|Location2.X=5330.301mil|Location1.Y=2896.576mil|Location2.Y=2912.031mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5319.209mil|Location2.X=5330.301mil|Location1.Y=2896.576mil|Location2.Y=2912.031mil|Absolute=True">Clearance Constraint: (0.235mm &lt; 0.25mm) Between Hole of Pad J2-(135.639mm,73.973mm) on Multi-Layer And Pad J2-A4/B9(134.569mm,73.483mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDDEPD02FGJDGTLDSUDJGA0ULAIJ2YHAVZB2RTCTETMLQGG4HFHTAB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Modified Polygon (Allow modified: No), (Allow shelved: No)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2720mil|Location2.X=5570mil|Location1.Y=1950mil|Location2.Y=3650mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2720mil|Location2.X=5570mil|Location1.Y=1950mil|Location2.Y=3650mil|Absolute=True">Modified Polygon: Polygon Shelved  (NONET_L02_P006) on Int1 (GND) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2720mil|Location2.X=5565mil|Location1.Y=1950mil|Location2.Y=3645mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2720mil|Location2.X=5565mil|Location1.Y=1950mil|Location2.Y=3645mil|Absolute=True">Modified Polygon: Polygon Shelved  (NONET_L03_P005) on Int2 (PWR) </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID2WTMH5WZPPQIQHBXMBCURPAMFF5UEN1AKLDXWDV1BXQMAN5AWVK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Annular Ring (Minimum=0.076mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5319.327mil|Location2.X=5322.327mil|Location1.Y=2967.319mil|Location2.Y=2970.319mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5319.327mil|Location2.X=5322.327mil|Location1.Y=2967.319mil|Location2.Y=2970.319mil|Absolute=True">Minimum Annular Ring: (No Ring) Pad J2-S1(135.149mm,75.408mm) on Multi-Layer (Annular Ring missing on Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5319.327mil|Location2.X=5322.327mil|Location1.Y=2626.768mil|Location2.Y=2629.768mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5319.327mil|Location2.X=5322.327mil|Location1.Y=2626.768mil|Location2.Y=2629.768mil|Absolute=True">Minimum Annular Ring: (No Ring) Pad J2-S2(135.149mm,66.758mm) on Multi-Layer (Annular Ring missing on Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5483.5mil|Location2.X=5486.5mil|Location1.Y=2967.319mil|Location2.Y=2970.319mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5483.5mil|Location2.X=5486.5mil|Location1.Y=2967.319mil|Location2.Y=2970.319mil|Absolute=True">Minimum Annular Ring: (No Ring) Pad J2-S3(139.319mm,75.408mm) on Multi-Layer (Annular Ring missing on Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5483.5mil|Location2.X=5486.5mil|Location1.Y=2626.768mil|Location2.Y=2629.768mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5483.5mil|Location2.X=5486.5mil|Location1.Y=2626.768mil|Location2.Y=2629.768mil|Absolute=True">Minimum Annular Ring: (No Ring) Pad J2-S4(139.319mm,66.758mm) on Multi-Layer (Annular Ring missing on Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3283.347mil|Location2.X=3287.597mil|Location1.Y=2986.261mil|Location2.Y=2990.511mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3283.347mil|Location2.X=3287.597mil|Location1.Y=2986.261mil|Location2.Y=2990.511mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-58(83.451mm,75.68mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3342.403mil|Location2.X=3346.653mil|Location1.Y=2986.261mil|Location2.Y=2990.511mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3342.403mil|Location2.X=3346.653mil|Location1.Y=2986.261mil|Location2.Y=2990.511mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-59(84.951mm,75.68mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3253.82mil|Location2.X=3258.07mil|Location1.Y=2956.733mil|Location2.Y=2960.983mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3253.82mil|Location2.X=3258.07mil|Location1.Y=2956.733mil|Location2.Y=2960.983mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-60(82.701mm,74.93mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3312.875mil|Location2.X=3317.125mil|Location1.Y=2956.733mil|Location2.Y=2960.983mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3312.875mil|Location2.X=3317.125mil|Location1.Y=2956.733mil|Location2.Y=2960.983mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-61(84.201mm,74.93mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3371.93mil|Location2.X=3376.18mil|Location1.Y=2956.733mil|Location2.Y=2960.983mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3371.93mil|Location2.X=3376.18mil|Location1.Y=2956.733mil|Location2.Y=2960.983mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-62(85.701mm,74.93mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3283.347mil|Location2.X=3287.597mil|Location1.Y=2927.206mil|Location2.Y=2931.456mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3283.347mil|Location2.X=3287.597mil|Location1.Y=2927.206mil|Location2.Y=2931.456mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-63(83.451mm,74.18mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3342.403mil|Location2.X=3346.653mil|Location1.Y=2927.206mil|Location2.Y=2931.456mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3342.403mil|Location2.X=3346.653mil|Location1.Y=2927.206mil|Location2.Y=2931.456mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-64(84.951mm,74.18mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3253.82mil|Location2.X=3258.07mil|Location1.Y=2897.678mil|Location2.Y=2901.928mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3253.82mil|Location2.X=3258.07mil|Location1.Y=2897.678mil|Location2.Y=2901.928mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-65(82.701mm,73.43mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3312.875mil|Location2.X=3317.125mil|Location1.Y=2897.678mil|Location2.Y=2901.928mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3312.875mil|Location2.X=3317.125mil|Location1.Y=2897.678mil|Location2.Y=2901.928mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-66(84.201mm,73.43mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3371.93mil|Location2.X=3376.18mil|Location1.Y=2897.678mil|Location2.Y=2901.928mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3371.93mil|Location2.X=3376.18mil|Location1.Y=2897.678mil|Location2.Y=2901.928mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-67(85.701mm,73.43mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3283.347mil|Location2.X=3287.597mil|Location1.Y=2868.151mil|Location2.Y=2872.401mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3283.347mil|Location2.X=3287.597mil|Location1.Y=2868.151mil|Location2.Y=2872.401mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-68(83.451mm,72.68mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3342.403mil|Location2.X=3346.653mil|Location1.Y=2868.151mil|Location2.Y=2872.401mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3342.403mil|Location2.X=3346.653mil|Location1.Y=2868.151mil|Location2.Y=2872.401mil|Absolute=True">Minimum Annular Ring: (0.05mm &lt; 0.076mm) Pad U*1-69(84.951mm,72.68mm) on Multi-Layer (Annular Ring=0.05mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDQVUJYGFKIVZLPPOJKQTUFC3W3NDCAWG5MMJHKHNIKVHR2ZT1RF3"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.102mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3043.667mil|Location2.X=3047.333mil|Location1.Y=2980.745mil|Location2.Y=2984.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3043.667mil|Location2.X=3047.333mil|Location1.Y=2980.745mil|Location2.Y=2984.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C10-1(77.539mm,75.97mm) on Top Layer And Text "L1" (77.356mm,75.171mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3060.196mil|Location2.X=3067.873mil|Location1.Y=2977.231mil|Location2.Y=2984.978mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3060.196mil|Location2.X=3067.873mil|Location1.Y=2977.231mil|Location2.Y=2984.978mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.07mm &lt; 0.102mm) Between Pad C10-1(77.539mm,75.97mm) on Top Layer And Text "R1" (76.213mm,74.13mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.07mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3005.604mil|Location2.X=3009.27mil|Location1.Y=2976.647mil|Location2.Y=2980.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3005.604mil|Location2.X=3009.27mil|Location1.Y=2976.647mil|Location2.Y=2980.314mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C10-2(76.639mm,75.97mm) on Top Layer And Text "R1" (76.213mm,74.13mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2992.537mil|Location2.X=2996.203mil|Location1.Y=3027.644mil|Location2.Y=3031.311mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2992.537mil|Location2.X=2996.203mil|Location1.Y=3027.644mil|Location2.Y=3031.311mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C11-1(76.327mm,76.977mm) on Top Layer And Text "L1" (77.356mm,75.171mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3152.667mil|Location2.X=3156.333mil|Location1.Y=3207.647mil|Location2.Y=3211.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3152.667mil|Location2.X=3156.333mil|Location1.Y=3207.647mil|Location2.Y=3211.314mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C1-2(80.391mm,81.719mm) on Top Layer And Text "Y1" (80.124mm,79.997mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3092.647mil|Location2.X=3096.314mil|Location1.Y=3073.611mil|Location2.Y=3077.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3092.647mil|Location2.X=3096.314mil|Location1.Y=3073.611mil|Location2.Y=3077.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C12-2(78.867mm,77.757mm) on Top Layer And Text "L2" (77.076mm,78.116mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3653.664mil|Location2.X=3657.33mil|Location1.Y=2549.651mil|Location2.Y=2553.317mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3653.664mil|Location2.X=3657.33mil|Location1.Y=2549.651mil|Location2.Y=2553.317mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C17-1(92.71mm,64.839mm) on Bottom Layer And Text "Q1" (92.596mm,63.792mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3656.533mil|Location2.X=3660.199mil|Location1.Y=2509.664mil|Location2.Y=2513.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3656.533mil|Location2.X=3660.199mil|Location1.Y=2509.664mil|Location2.Y=2513.33mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C17-2(92.71mm,63.939mm) on Bottom Layer And Text "Q1" (92.596mm,63.792mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3361.667mil|Location2.X=3365.333mil|Location1.Y=3246.651mil|Location2.Y=3250.317mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3361.667mil|Location2.X=3365.333mil|Location1.Y=3246.651mil|Location2.Y=3250.317mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C2-1(85.217mm,82.619mm) on Top Layer And Text "C8" (85.433mm,81.242mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3361.667mil|Location2.X=3365.333mil|Location1.Y=3206.651mil|Location2.Y=3210.317mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3361.667mil|Location2.X=3365.333mil|Location1.Y=3206.651mil|Location2.Y=3210.317mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C2-2(85.217mm,81.719mm) on Top Layer And Text "C6" (85.433mm,80.226mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3361.667mil|Location2.X=3365.333mil|Location1.Y=3206.664mil|Location2.Y=3210.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3361.667mil|Location2.X=3365.333mil|Location1.Y=3206.664mil|Location2.Y=3210.33mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C2-2(85.217mm,81.719mm) on Top Layer And Text "C8" (85.433mm,81.242mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3050.605mil|Location2.X=3054.272mil|Location1.Y=2899.676mil|Location2.Y=2903.343mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3050.605mil|Location2.X=3054.272mil|Location1.Y=2899.676mil|Location2.Y=2903.343mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C3-1(77.285mm,73.914mm) on Top Layer And Text "C9" (77.762mm,73.722mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3034.574mil|Location2.X=3038.241mil|Location1.Y=2920.746mil|Location2.Y=2924.413mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3034.574mil|Location2.X=3038.241mil|Location1.Y=2920.746mil|Location2.Y=2924.413mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C3-1(77.285mm,73.914mm) on Top Layer And Text "R1" (76.213mm,74.13mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2993.052mil|Location2.X=2996.718mil|Location1.Y=2897.249mil|Location2.Y=2900.915mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2993.052mil|Location2.X=2996.718mil|Location1.Y=2897.249mil|Location2.Y=2900.915mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C3-2(76.385mm,73.914mm) on Top Layer And Text "C9" (77.762mm,73.722mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.667mil|Location2.X=3002.333mil|Location1.Y=2916.667mil|Location2.Y=2920.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2998.667mil|Location2.X=3002.333mil|Location1.Y=2916.667mil|Location2.Y=2920.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C3-2(76.385mm,73.914mm) on Top Layer And Text "R1" (76.213mm,74.13mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.533mil|Location2.X=3115.199mil|Location1.Y=3106.611mil|Location2.Y=3110.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.533mil|Location2.X=3115.199mil|Location1.Y=3106.611mil|Location2.Y=3110.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C4-1(78.867mm,79.33mm) on Top Layer And Text "C11" (76.162mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3096.667mil|Location2.X=3100.333mil|Location1.Y=3128.777mil|Location2.Y=3132.443mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3096.667mil|Location2.X=3100.333mil|Location1.Y=3128.777mil|Location2.Y=3132.443mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C4-1(78.867mm,79.33mm) on Top Layer And Text "C12" (78.702mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3088.961mil|Location2.X=3092.627mil|Location1.Y=3116.902mil|Location2.Y=3120.569mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3088.961mil|Location2.X=3092.627mil|Location1.Y=3116.902mil|Location2.Y=3120.569mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C4-1(78.867mm,79.33mm) on Top Layer And Text "C5" (78.651mm,79.107mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.533mil|Location2.X=3115.199mil|Location1.Y=3133.592mil|Location2.Y=3137.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.533mil|Location2.X=3115.199mil|Location1.Y=3133.592mil|Location2.Y=3137.259mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C4-1(78.867mm,79.33mm) on Top Layer And Text "L2" (77.076mm,78.116mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3113.544mil|Location2.X=3118.794mil|Location1.Y=3127.985mil|Location2.Y=3133.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3113.544mil|Location2.X=3118.794mil|Location1.Y=3127.985mil|Location2.Y=3133.235mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.017mm &lt; 0.102mm) Between Pad C4-1(78.867mm,79.33mm) on Top Layer And Text "U*1" (79.286mm,79.069mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.017mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.628mil|Location2.X=3120.294mil|Location1.Y=3166.592mil|Location2.Y=3170.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.628mil|Location2.X=3120.294mil|Location1.Y=3166.592mil|Location2.Y=3170.259mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C4-2(78.867mm,80.23mm) on Top Layer And Text "C11" (76.162mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.809mil|Location2.X=3115.475mil|Location1.Y=3166.592mil|Location2.Y=3170.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.809mil|Location2.X=3115.475mil|Location1.Y=3166.592mil|Location2.Y=3170.259mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C4-2(78.867mm,80.23mm) on Top Layer And Text "C12" (78.702mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3094.667mil|Location2.X=3098.333mil|Location1.Y=3142.602mil|Location2.Y=3146.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3094.667mil|Location2.X=3098.333mil|Location1.Y=3142.602mil|Location2.Y=3146.268mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C4-2(78.867mm,80.23mm) on Top Layer And Text "C5" (78.651mm,79.107mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3113.544mil|Location2.X=3118.794mil|Location1.Y=3148.654mil|Location2.Y=3153.904mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3113.544mil|Location2.X=3118.794mil|Location1.Y=3148.654mil|Location2.Y=3153.904mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.017mm &lt; 0.102mm) Between Pad C4-2(78.867mm,80.23mm) on Top Layer And Text "U*1" (79.286mm,79.069mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.017mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3094.801mil|Location2.X=3098.467mil|Location1.Y=3147.667mil|Location2.Y=3151.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3094.801mil|Location2.X=3098.467mil|Location1.Y=3147.667mil|Location2.Y=3151.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C4-2(78.867mm,80.23mm) on Top Layer And Text "Y1" (80.124mm,79.997mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3130.892mil|Location2.X=3138.135mil|Location1.Y=3107.437mil|Location2.Y=3115.589mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3130.892mil|Location2.X=3138.135mil|Location1.Y=3107.437mil|Location2.Y=3115.589mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.091mm &lt; 0.102mm) Between Pad C5-1(79.883mm,79.33mm) on Top Layer And Text "C11" (76.162mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.091mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3133.197mil|Location2.X=3136.864mil|Location1.Y=3113.152mil|Location2.Y=3116.818mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3133.197mil|Location2.X=3136.864mil|Location1.Y=3113.152mil|Location2.Y=3116.818mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C5-1(79.883mm,79.33mm) on Top Layer And Text "C12" (78.702mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3132.634mil|Location2.X=3136.301mil|Location1.Y=3113.599mil|Location2.Y=3117.265mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3132.634mil|Location2.X=3136.301mil|Location1.Y=3113.599mil|Location2.Y=3117.265mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C5-1(79.883mm,79.33mm) on Top Layer And Text "L2" (77.076mm,78.116mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3129.67mil|Location2.X=3133.337mil|Location1.Y=3111.139mil|Location2.Y=3114.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3129.67mil|Location2.X=3133.337mil|Location1.Y=3111.139mil|Location2.Y=3114.806mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C5-1(79.883mm,79.33mm) on Top Layer And Text "U*1" (79.286mm,79.069mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3136.654mil|Location2.X=3140.32mil|Location1.Y=3156.595mil|Location2.Y=3160.262mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3136.654mil|Location2.X=3140.32mil|Location1.Y=3156.595mil|Location2.Y=3160.262mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C5-2(79.883mm,80.23mm) on Top Layer And Text "C12" (78.702mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3153.537mil|Location2.X=3158.787mil|Location1.Y=3148.654mil|Location2.Y=3153.904mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3153.537mil|Location2.X=3158.787mil|Location1.Y=3148.654mil|Location2.Y=3153.904mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.017mm &lt; 0.102mm) Between Pad C5-2(79.883mm,80.23mm) on Top Layer And Text "U*1" (79.286mm,79.069mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.017mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3132.336mil|Location2.X=3136.003mil|Location1.Y=3167.66mil|Location2.Y=3171.327mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3132.336mil|Location2.X=3136.003mil|Location1.Y=3167.66mil|Location2.Y=3171.327mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C5-2(79.883mm,80.23mm) on Top Layer And Text "Y1" (80.124mm,79.997mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3034.715mil|Location2.X=3038.381mil|Location1.Y=3114.669mil|Location2.Y=3118.336mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3034.715mil|Location2.X=3038.381mil|Location1.Y=3114.669mil|Location2.Y=3118.336mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C7-1(77.47mm,79.306mm) on Top Layer And Text "C11" (76.162mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3039.801mil|Location2.X=3043.467mil|Location1.Y=3112.611mil|Location2.Y=3116.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3039.801mil|Location2.X=3043.467mil|Location1.Y=3112.611mil|Location2.Y=3116.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C7-1(77.47mm,79.306mm) on Top Layer And Text "C4" (77.635mm,79.107mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3034.686mil|Location2.X=3038.353mil|Location1.Y=3127.832mil|Location2.Y=3131.499mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3034.686mil|Location2.X=3038.353mil|Location1.Y=3127.832mil|Location2.Y=3131.499mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C7-1(77.47mm,79.306mm) on Top Layer And Text "C5" (78.651mm,79.107mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3032.667mil|Location2.X=3036.333mil|Location1.Y=3111.999mil|Location2.Y=3115.666mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3032.667mil|Location2.X=3036.333mil|Location1.Y=3111.999mil|Location2.Y=3115.666mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C7-1(77.47mm,79.306mm) on Top Layer And Text "L2" (77.076mm,78.116mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3036.654mil|Location2.X=3040.32mil|Location1.Y=3156.595mil|Location2.Y=3160.262mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3036.654mil|Location2.X=3040.32mil|Location1.Y=3156.595mil|Location2.Y=3160.262mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C7-2(77.47mm,80.206mm) on Top Layer And Text "C11" (76.162mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3054.667mil|Location2.X=3058.333mil|Location1.Y=3142.602mil|Location2.Y=3146.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3054.667mil|Location2.X=3058.333mil|Location1.Y=3142.602mil|Location2.Y=3146.268mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C7-2(77.47mm,80.206mm) on Top Layer And Text "C4" (77.635mm,79.107mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3044.683mil|Location2.X=3048.349mil|Location1.Y=3152.599mil|Location2.Y=3156.265mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3044.683mil|Location2.X=3048.349mil|Location1.Y=3152.599mil|Location2.Y=3156.265mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C7-2(77.47mm,80.206mm) on Top Layer And Text "C5" (78.651mm,79.107mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3365.957mil|Location2.X=3369.624mil|Location1.Y=3162.373mil|Location2.Y=3166.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3365.957mil|Location2.X=3369.624mil|Location1.Y=3162.373mil|Location2.Y=3166.039mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C8-1(85.656mm,80.01mm) on Top Layer And Text "C6" (85.433mm,80.226mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3401.667mil|Location2.X=3405.333mil|Location1.Y=3159.699mil|Location2.Y=3163.366mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3401.667mil|Location2.X=3405.333mil|Location1.Y=3159.699mil|Location2.Y=3163.366mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C8-2(86.556mm,80.01mm) on Top Layer And Text "C2" (86.449mm,82.842mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3391.657mil|Location2.X=3395.324mil|Location1.Y=3156.667mil|Location2.Y=3160.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3391.657mil|Location2.X=3395.324mil|Location1.Y=3156.667mil|Location2.Y=3160.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C8-2(86.556mm,80.01mm) on Top Layer And Text "C6" (85.433mm,80.226mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3041.037mil|Location2.X=3044.703mil|Location1.Y=2957.667mil|Location2.Y=2961.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3041.037mil|Location2.X=3044.703mil|Location1.Y=2957.667mil|Location2.Y=2961.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C9-1(77.539mm,74.954mm) on Top Layer And Text "L1" (77.356mm,75.171mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3038.654mil|Location2.X=3042.32mil|Location1.Y=2957.478mil|Location2.Y=2961.144mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3038.654mil|Location2.X=3042.32mil|Location1.Y=2957.478mil|Location2.Y=2961.144mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C9-1(77.539mm,74.954mm) on Top Layer And Text "R1" (76.213mm,74.13mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3005.604mil|Location2.X=3009.27mil|Location1.Y=2957.667mil|Location2.Y=2961.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3005.604mil|Location2.X=3009.27mil|Location1.Y=2957.667mil|Location2.Y=2961.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C9-2(76.639mm,74.954mm) on Top Layer And Text "L1" (77.356mm,75.171mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3028.657mil|Location2.X=3032.324mil|Location1.Y=2936.66mil|Location2.Y=2940.327mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3028.657mil|Location2.X=3032.324mil|Location1.Y=2936.66mil|Location2.Y=2940.327mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad C9-2(76.639mm,74.954mm) on Top Layer And Text "R1" (76.213mm,74.13mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3694.072mil|Location2.X=3697.739mil|Location1.Y=2579.641mil|Location2.Y=2583.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3694.072mil|Location2.X=3697.739mil|Location1.Y=2579.641mil|Location2.Y=2583.307mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J1-31(94.376mm,65.833mm) on Bottom Layer And Text "Q1" (92.596mm,63.792mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3694.072mil|Location2.X=3697.739mil|Location1.Y=2579.641mil|Location2.Y=2583.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3694.072mil|Location2.X=3697.739mil|Location1.Y=2579.641mil|Location2.Y=2583.307mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J1-32(94.376mm,65.333mm) on Bottom Layer And Text "Q1" (92.596mm,63.792mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3693.651mil|Location2.X=3697.317mil|Location1.Y=2549.651mil|Location2.Y=2553.317mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3693.651mil|Location2.X=3697.317mil|Location1.Y=2549.651mil|Location2.Y=2553.317mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J1-33(94.376mm,64.833mm) on Bottom Layer And Text "Q1" (92.596mm,63.792mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3703.647mil|Location2.X=3707.314mil|Location1.Y=2539.654mil|Location2.Y=2543.32mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3703.647mil|Location2.X=3707.314mil|Location1.Y=2539.654mil|Location2.Y=2543.32mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J1-34(94.376mm,64.333mm) on Bottom Layer And Text "Q1" (92.596mm,63.792mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3703.647mil|Location2.X=3707.314mil|Location1.Y=2519.66mil|Location2.Y=2523.327mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3703.647mil|Location2.X=3707.314mil|Location1.Y=2519.66mil|Location2.Y=2523.327mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J1-35(94.376mm,63.833mm) on Bottom Layer And Text "Q1" (92.596mm,63.792mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.647mil|Location2.X=3703.314mil|Location1.Y=2466.667mil|Location2.Y=2470.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.647mil|Location2.X=3703.314mil|Location1.Y=2466.667mil|Location2.Y=2470.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J1-37(94.376mm,62.833mm) on Bottom Layer And Text "C17" (92.494mm,62.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.644mil|Location2.X=3713.311mil|Location1.Y=2446.316mil|Location2.Y=2449.983mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.644mil|Location2.X=3713.311mil|Location1.Y=2446.316mil|Location2.Y=2449.983mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J1-38(94.376mm,62.333mm) on Bottom Layer And Text "C17" (92.494mm,62.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.644mil|Location2.X=3713.311mil|Location1.Y=2426.631mil|Location2.Y=2430.298mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.644mil|Location2.X=3713.311mil|Location1.Y=2426.631mil|Location2.Y=2430.298mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J1-39(94.376mm,61.833mm) on Bottom Layer And Text "C17" (92.494mm,62.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.644mil|Location2.X=3713.311mil|Location1.Y=2406.946mil|Location2.Y=2410.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3709.644mil|Location2.X=3713.311mil|Location1.Y=2406.946mil|Location2.Y=2410.613mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J1-40(94.376mm,61.333mm) on Bottom Layer And Text "C17" (92.494mm,62.7mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.634mil|Location2.X=5486.301mil|Location1.Y=2983.908mil|Location2.Y=2987.574mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5482.634mil|Location2.X=5486.301mil|Location1.Y=2983.908mil|Location2.Y=2987.574mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad J2-S3(139.319mm,75.408mm) on Multi-Layer And Text "SW1" (136.766mm,77.297mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3043.667mil|Location2.X=3047.333mil|Location1.Y=3024.19mil|Location2.Y=3027.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3043.667mil|Location2.X=3047.333mil|Location1.Y=3024.19mil|Location2.Y=3027.857mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad L2-1(77.287mm,76.986mm) on Top Layer And Text "L1" (77.356mm,75.171mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3491.667mil|Location2.X=3495.333mil|Location1.Y=2523.667mil|Location2.Y=2527.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3491.667mil|Location2.X=3495.333mil|Location1.Y=2523.667mil|Location2.Y=2527.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Q1-1(88.793mm,63.82mm) on Bottom Layer And Text "R5" (88.735mm,64.148mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3491.667mil|Location2.X=3495.333mil|Location1.Y=2563.654mil|Location2.Y=2567.32mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3491.667mil|Location2.X=3495.333mil|Location1.Y=2563.654mil|Location2.Y=2567.32mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Q1-2(88.793mm,65.72mm) on Bottom Layer And Text "R5" (88.735mm,64.148mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3019.676mil|Location2.X=3023.343mil|Location1.Y=2859.667mil|Location2.Y=2863.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3019.676mil|Location2.X=3023.343mil|Location1.Y=2859.667mil|Location2.Y=2863.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad R1-1(76.385mm,72.898mm) on Top Layer And Text "C3" (77.508mm,72.682mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2999.686mil|Location2.X=3003.353mil|Location1.Y=2859.801mil|Location2.Y=2863.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2999.686mil|Location2.X=3003.353mil|Location1.Y=2859.801mil|Location2.Y=2863.467mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad R1-1(76.385mm,72.898mm) on Top Layer And Text "C9" (77.762mm,73.722mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.001mil|Location2.X=3045.667mil|Location1.Y=2857.336mil|Location2.Y=2861.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.001mil|Location2.X=3045.667mil|Location1.Y=2857.336mil|Location2.Y=2861.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad R1-2(77.285mm,72.898mm) on Top Layer And Text "C3" (77.508mm,72.682mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3051.906mil|Location2.X=3057.156mil|Location1.Y=2859.009mil|Location2.Y=2864.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3051.906mil|Location2.X=3057.156mil|Location1.Y=2859.009mil|Location2.Y=2864.259mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.102mm) Between Pad R1-2(77.285mm,72.898mm) on Top Layer And Text "C9" (77.762mm,73.722mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3210.297mil|Location2.X=3213.963mil|Location1.Y=3106.611mil|Location2.Y=3110.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3210.297mil|Location2.X=3213.963mil|Location1.Y=3106.611mil|Location2.Y=3110.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad R2-1(81.338mm,78.867mm) on Top Layer And Text "C12" (78.702mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.856mil|Location2.X=3204.106mil|Location1.Y=3114.275mil|Location2.Y=3119.525mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.856mil|Location2.X=3204.106mil|Location1.Y=3114.275mil|Location2.Y=3119.525mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.054mm &lt; 0.102mm) Between Pad R2-1(81.338mm,78.867mm) on Top Layer And Text "U*1" (79.286mm,79.069mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.054mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3226.037mil|Location2.X=3229.703mil|Location1.Y=3106.611mil|Location2.Y=3110.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3226.037mil|Location2.X=3229.703mil|Location1.Y=3106.611mil|Location2.Y=3110.278mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad R2-2(82.238mm,78.867mm) on Top Layer And Text "C12" (78.702mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.634mil|Location2.X=3243.301mil|Location1.Y=3111.139mil|Location2.Y=3114.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.634mil|Location2.X=3243.301mil|Location1.Y=3111.139mil|Location2.Y=3114.806mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad R2-2(82.238mm,78.867mm) on Top Layer And Text "U*1" (79.286mm,79.069mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5129.686mil|Location2.X=5133.353mil|Location1.Y=2847.676mil|Location2.Y=2851.343mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5129.686mil|Location2.X=5133.353mil|Location1.Y=2847.676mil|Location2.Y=2851.343mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad U1-1(130.45mm,72.033mm) on Bottom Layer And Text "R3" (131.864mm,73.139mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5130.834mil|Location2.X=5134.501mil|Location1.Y=2808.837mil|Location2.Y=2812.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5130.834mil|Location2.X=5134.501mil|Location1.Y=2808.837mil|Location2.Y=2812.504mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad U1-2(130.45mm,71.083mm) on Bottom Layer And Text "R3" (131.864mm,73.139mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5138.891mil|Location2.X=5144.141mil|Location1.Y=2771.276mil|Location2.Y=2776.526mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5138.891mil|Location2.X=5144.141mil|Location1.Y=2771.276mil|Location2.Y=2776.526mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.032mm &lt; 0.102mm) Between Pad U1-3(130.45mm,70.133mm) on Bottom Layer And Text "R3" (131.864mm,73.139mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.032mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3262.715mil|Location2.X=3266.382mil|Location1.Y=3220.744mil|Location2.Y=3224.411mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3262.715mil|Location2.X=3266.382mil|Location1.Y=3220.744mil|Location2.Y=3224.411mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Y1-1(83.604mm,81.069mm) on Top Layer And Text "C1" (81.623mm,82.842mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3265.161mil|Location2.X=3268.828mil|Location1.Y=3163.18mil|Location2.Y=3166.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3265.161mil|Location2.X=3268.828mil|Location1.Y=3163.18mil|Location2.Y=3166.847mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Y1-1(83.604mm,81.069mm) on Top Layer And Text "R2" (81.166mm,80.099mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3271.647mil|Location2.X=3275.314mil|Location1.Y=3248.915mil|Location2.Y=3252.581mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3271.647mil|Location2.X=3275.314mil|Location1.Y=3248.915mil|Location2.Y=3252.581mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Y1-2(83.604mm,83.269mm) on Top Layer And Text "C1" (81.623mm,82.842mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.293mil|Location2.X=3253.959mil|Location1.Y=3259.667mil|Location2.Y=3263.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3250.293mil|Location2.X=3253.959mil|Location1.Y=3259.667mil|Location2.Y=3263.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Y1-3(82.004mm,83.269mm) on Top Layer And Text "C1" (81.623mm,82.842mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3221.664mil|Location2.X=3225.33mil|Location1.Y=3219.68mil|Location2.Y=3223.346mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3221.664mil|Location2.X=3225.33mil|Location1.Y=3219.68mil|Location2.Y=3223.346mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Y1-4(82.004mm,81.069mm) on Top Layer And Text "C1" (81.623mm,82.842mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3240.913mil|Location2.X=3244.579mil|Location1.Y=3162.301mil|Location2.Y=3165.967mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3240.913mil|Location2.X=3244.579mil|Location1.Y=3162.301mil|Location2.Y=3165.967mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Y1-4(82.004mm,81.069mm) on Top Layer And Text "C12" (78.702mm,78.954mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3203.049mil|Location2.X=3206.715mil|Location1.Y=3211.647mil|Location2.Y=3215.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3203.049mil|Location2.X=3206.715mil|Location1.Y=3211.647mil|Location2.Y=3215.314mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Y1-4(82.004mm,81.069mm) on Top Layer And Text "R2" (81.166mm,80.099mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3219.641mil|Location2.X=3223.307mil|Location1.Y=3161.123mil|Location2.Y=3164.789mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3219.641mil|Location2.X=3223.307mil|Location1.Y=3161.123mil|Location2.Y=3164.789mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.102mm) Between Pad Y1-4(82.004mm,81.069mm) on Top Layer And Text "U*1" (79.286mm,79.069mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDWNSOABJLTCGJIQTBLWZDPPK31GH5WYWIAAFNNQOAOH3EETTOMNWO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2820.349mil|Location2.X=2826.599mil|Location1.Y=3688.366mil|Location2.Y=3694.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2820.349mil|Location2.X=2826.599mil|Location1.Y=3688.366mil|Location2.Y=3694.615mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Text "ST1" (69.939mm,93.002mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5435.35mil|Location2.X=5441.599mil|Location1.Y=3688.366mil|Location2.Y=3694.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5435.35mil|Location2.X=5441.599mil|Location1.Y=3688.366mil|Location2.Y=3694.615mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Text "ST4" (136.106mm,93.002mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5574.41mil|Location2.X=5580.659mil|Location1.Y=2619.434mil|Location2.Y=2625.684mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5574.41mil|Location2.X=5580.659mil|Location1.Y=2619.434mil|Location2.Y=2625.684mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (140.489mm,66.613mm)(141.919mm,66.613mm) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5574.41mil|Location2.X=5580.659mil|Location1.Y=2971.403mil|Location2.Y=2977.652mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5574.41mil|Location2.X=5580.659mil|Location1.Y=2971.403mil|Location2.Y=2977.652mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (140.489mm,75.553mm)(141.919mm,75.553mm) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5584.238mil|Location2.X=5590.487mil|Location1.Y=2795.419mil|Location2.Y=2801.668mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\bscha\Desktop\Pinto\Hardware\Pinto\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5584.238mil|Location2.X=5590.487mil|Location1.Y=2795.419mil|Location2.Y=2801.668mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (141.919mm,66.613mm)(141.919mm,75.553mm) on Bottom Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
